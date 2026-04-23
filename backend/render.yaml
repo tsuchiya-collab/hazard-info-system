@@ -6,8 +6,8 @@ services:
     plan: free
     runtime:
       python: 3.11
-    buildCommand: pip install -r requirements.txt
-    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    buildCommand: pip install -r backend/requirements.txt && pip install uvicorn
+    startCommand: cd backend && uvicorn main:app --host 0.0.0.0 --port $PORT
     envVars:
       - key: MLIT_API_KEY
         sync: false
