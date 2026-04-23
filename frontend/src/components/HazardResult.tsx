@@ -27,7 +27,6 @@ export default function HazardResult({
   longitude,
   hazardInfo,
   salesforceUpdated,
-  message,
 }: HazardResultProps) {
   const getStatusColor = (value: string) => {
     if (value === '要確認' || value === '指定あり' || value === '内') {

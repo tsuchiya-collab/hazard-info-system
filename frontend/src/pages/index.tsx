@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import axios from 'axios'
 import HazardForm from '@/components/HazardForm'
 import HazardResult from '@/components/HazardResult'
