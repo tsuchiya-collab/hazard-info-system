@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import axios from 'axios'
 
 interface HazardFormProps {
   onSubmit: (data: any) => void
