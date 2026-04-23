@@ -1,0 +1,27 @@
+services:
+  - type: web
+    name: hazard-backend
+    env: python
+    region: singapore
+    plan: free
+    runtime:
+      python: 3.11
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: MLIT_API_KEY
+        sync: false
+      - key: SALESFORCE_INSTANCE
+        value: https://landtrust.my.salesforce.com
+      - key: SALESFORCE_CLIENT_ID
+        sync: false
+      - key: SALESFORCE_CLIENT_SECRET
+        sync: false
+      - key: SALESFORCE_USERNAME
+        sync: false
+      - key: SALESFORCE_PASSWORD
+        sync: false
+      - key: FRONTEND_URL
+        value: https://frontend-pink-xi-74.vercel.app
+      - key: ENV
+        value: production
