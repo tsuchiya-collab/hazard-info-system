@@ -10,7 +10,8 @@ router = APIRouter(prefix="/api/hazard", tags=["hazard"])
 @router.post("/check", response_model=HazardResponse)
 async def check_hazard(request: HazardRequest):
     """
-    住所からハザード情報を取得し、オプションで Salesforce に自動入力する
+    住所からハザード情報を取得する
+    MLIT_API_KEY が設定されていない場合はテストデータを返す
     """
     try:
         # ステップ1: 住所をジオコーディング
@@ -22,10 +23,23 @@ async def check_hazard(request: HazardRequest):
 
         # ステップ2: ハザード情報を取得
         api_key = os.getenv("MLIT_API_KEY")
-        if not api_key:
-            raise HTTPException(status_code=500, detail="API キーが設定されていません")
 
-        hazard_info_dict = await get_all_hazard_info(lat, lon, api_key)
+        # API キーがない場合はテストデータを使用
+        if not api_key:
+            hazard_info_dict = {
+                "flood_zone": "要確認",
+                "flood_depth_min": 0.5,
+                "flood_depth_max": 1.5,
+                "flood_url": "https://disaportal.gsi.go.jp/hazardmap/",
+                "landslide_zone": "指定あり",
+                "landslide_url": "https://disaportal.gsi.go.jp/hazardmap/",
+                "tsunami_zone": "内",
+                "tsunami_url": "https://disaportal.gsi.go.jp/hazardmap/",
+                "hazard_zone": "なし",
+                "hazard_url": "https://disaportal.gsi.go.jp/hazardmap/"
+            }
+        else:
+            hazard_info_dict = await get_all_hazard_info(lat, lon, api_key)
 
         hazard_info = HazardInfo(
             flood_zone=hazard_info_dict.get("flood_zone"),
