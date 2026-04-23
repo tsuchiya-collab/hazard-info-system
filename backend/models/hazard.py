@@ -3,8 +3,6 @@ from typing import Optional
 
 class HazardRequest(BaseModel):
     address: str
-    bukken_id: Optional[str] = None
-    update_salesforce: bool = False
 
 class CoordinatesResponse(BaseModel):
     latitude: float
@@ -34,5 +32,4 @@ class HazardResponse(BaseModel):
     latitude: float
     longitude: float
     hazard_info: HazardInfo
-    salesforce_updated: bool = False
     message: Optional[str] = None

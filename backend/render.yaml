@@ -11,16 +11,6 @@ services:
     envVars:
       - key: MLIT_API_KEY
         sync: false
-      - key: SALESFORCE_INSTANCE
-        value: https://landtrust.my.salesforce.com
-      - key: SALESFORCE_CLIENT_ID
-        sync: false
-      - key: SALESFORCE_CLIENT_SECRET
-        sync: false
-      - key: SALESFORCE_USERNAME
-        sync: false
-      - key: SALESFORCE_PASSWORD
-        sync: false
       - key: FRONTEND_URL
         value: https://frontend-pink-xi-74.vercel.app
       - key: ENV

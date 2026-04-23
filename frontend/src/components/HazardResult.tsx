@@ -17,8 +17,6 @@ interface HazardResultProps {
   latitude: number
   longitude: number
   hazardInfo: HazardInfo
-  salesforceUpdated: boolean
-  message?: string
 }
 
 export default function HazardResult({
@@ -26,7 +24,6 @@ export default function HazardResult({
   latitude,
   longitude,
   hazardInfo,
-  salesforceUpdated,
 }: HazardResultProps) {
   const getStatusColor = (value: string) => {
     if (value === '要確認' || value === '指定あり' || value === '内') {
@@ -37,12 +34,6 @@ export default function HazardResult({
 
   return (
     <div>
-      {salesforceUpdated && (
-        <div className="success">
-          ✅ Salesforce に自動入力しました！
-        </div>
-      )}
-
       <div className="card">
         <h2 style={{ marginBottom: '20px', color: '#333' }}>ハザード情報</h2>
 

@@ -10,7 +10,6 @@ interface HazardData {
   latitude: number
   longitude: number
   hazard_info: any
-  salesforce_updated: boolean
   message?: string
 }
 
@@ -59,7 +58,7 @@ export default function Home() {
             🏘️ ハザード情報自動取得
           </h1>
           <p style={{ color: '#666', fontSize: '16px', marginBottom: '0' }}>
-            住所を入力すると、自動的に災害ハザード情報を取得し、Salesforce に登録します
+            住所を入力すると、自動的に災害ハザード情報を取得します
           </p>
         </div>
 
@@ -96,8 +95,6 @@ export default function Home() {
               latitude={result.latitude}
               longitude={result.longitude}
               hazardInfo={result.hazard_info}
-              salesforceUpdated={result.salesforce_updated}
-              message={result.message}
             />
             <button
               className="button"
@@ -118,15 +115,9 @@ export default function Home() {
             <h3 style={{ marginBottom: '15px', color: '#333' }}>📖 使い方</h3>
             <ol style={{ color: '#666', lineHeight: '1.8', marginLeft: '20px' }}>
               <li>住所を入力してください（例：神奈川県横須賀市望洋台20-3）</li>
-              <li>
-                （オプション）物件 ID（Salesforce の bukken__c ID）を入力すると、自動入力が有効になります
-              </li>
               <li>「ハザード情報を取得」ボタンをクリック</li>
               <li>
                 各ハザード区域の情報が表示されます。「要確認」「指定あり」の場合は、リンクから詳細を確認してください
-              </li>
-              <li>
-                Salesforce 自動入力が有効な場合、結果が自動的に物件レコードに入力されます
               </li>
             </ol>
           </div>

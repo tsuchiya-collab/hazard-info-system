@@ -4,7 +4,6 @@ import os
 from models.hazard import HazardRequest, HazardResponse, HazardInfo
 from services.geocoding import get_coordinates
 from services.hazardmap import get_all_hazard_info
-from services.salesforce import update_bukken_hazard_info
 
 router = APIRouter(prefix="/api/hazard", tags=["hazard"])
 
@@ -42,18 +41,12 @@ async def check_hazard(request: HazardRequest):
             confirmed_at=str(date.today())
         )
 
-        # ステップ3: Salesforce 自動入力（オプション）
-        sf_updated = False
-        if request.update_salesforce and request.bukken_id:
-            sf_updated = await update_bukken_hazard_info(request.bukken_id, hazard_info_dict)
-
         return HazardResponse(
             success=True,
             address=request.address,
             latitude=lat,
             longitude=lon,
             hazard_info=hazard_info,
-            salesforce_updated=sf_updated,
             message="ハザード情報を取得しました"
         )
 
