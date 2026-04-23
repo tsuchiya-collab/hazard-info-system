@@ -1,5 +1,3 @@
-import React from 'react'
-
 interface HazardInfo {
   flood_zone?: string
   flood_depth_min?: number
